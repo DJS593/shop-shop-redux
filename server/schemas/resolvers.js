@@ -52,21 +52,22 @@ const resolvers = {
 
       throw new AuthenticationError('Not logged in');
     },
-    checkout: async (parent, args, context) => {
-      const url = new URL(context.headers.referer).origin;
 
-      const order = new Order({ products: args.products });
-      const { products } = await order.populate('products').execPopulate();
+      checkout: async (parent, args, context) => {
+        const order = new Order({ products: args.products });
+        const { products } = await order.populate('products').execPopulate();
+        const url = new URL(context.headers.referer).origin;
+      
 
-      const line_items = [];
+        const line_items = [];
 
-      for (let i = 0; i < products.length; i++) {
+        for (let i = 0; i < products.length; i++) {
         // generate product id
-        const product = await stripe.products.create({
-          name: products[i].name,
-          description: products[i].description,
-          images: [`${url}/images/${products[i].image}`]
-        });
+          const product = await stripe.products.create({
+            name: products[i].name,
+            description: products[i].description,
+            images: [`${url}/images/${products[i].image}`]
+          });
 
         // generate price id using the product id
         const price = await stripe.prices.create({
