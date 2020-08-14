@@ -1,5 +1,5 @@
+
 import React, { useEffect, useState } from "react";
-//import { useStoreContext } from "../utils/GlobalState";
 import { 
   REMOVE_FROM_CART,
   UPDATE_CART_QUANTITY,
@@ -18,7 +18,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 function Detail() {
   //const [state, dispatch] = useStoreContext();
-  const state = useSelector();
+  const state = useSelector(state => state);
   const dispatch = useDispatch();
   const { id } = useParams();
 

@@ -1,3 +1,4 @@
+
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { ApolloProvider } from '@apollo/react-hooks';
@@ -11,7 +12,7 @@ import Signup from "./pages/Signup";
 import Success from './pages/Success';
 import Nav from "./components/Nav";
 // class material called for { StoreProvider } to be directly under Nav import 
-import { StoreProvider } from './utils/GlobalState';
+// import { StoreProvider } from './utils/GlobalState';
 import OrderHistory from "./pages/OrderHistory";
 import { Provider } from 'react-redux';
 import store from './app/store';
